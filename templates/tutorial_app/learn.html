@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Learn {{topic}} {% endblock %}
+{% block css %}
+<style>
+    #content{
+        display: none;
+    }
+</style>
+{% endblock %}
+{% block body %}
+
+{{ topic }}
+
+<div class="row">
+    <div class="col-3">
+        {% for module in modules %}
+        <button id="toggleButton">Toggle Content</button>
+        <div id="content">
+            <p>This is some content that can be collapsed or expanded.</p>
+        </div>
+        {% endfor %}
+        
+    </div>
+    <div class="col-9">
+
+        <div id="article">
+
+            {% include 'include/article.html' %}
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <ul>
+    {% for mod in module %}
+    <li>
+        <a hx-get="{% url 'get_article' mod.id %}" hx-target="#article" hx-trigger="click" >{{mod.name}}</a>
+    </li>
+    {% endfor %}
+</ul> -->
+
+
+
+
+{% endblock %}
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $('#toggleButton').click(function () {
+            $('#content').slideToggle();
+        });
+    });
+</script>
+
+{% endblock %}

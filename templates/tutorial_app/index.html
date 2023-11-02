@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block title %} My Profile {% endblock %}
+{% block css %} 
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+
+{% block body %}
+<section id="hero" class="d-flex justify-content-center align-items-center">
+    <div class="overlay"></div>
+    <div class="hero-div w-25 mx-auto  text-center   ">
+        <h3 class="h2 fw-bold ">Learn To Code!</h3>
+        <p>Dive Dive Into Code</p>
+        <div class="d-flex gap-3">
+
+            <button class="btn btn-success w-50 mx-auto">Join Now</button>
+            <button class="btn btn-info text-white w-50 mx-auto">Contribute Now</button>
+        </div>
+    </div>
+</section>
+
+<section id="category" class="py-5">
+    <div class="container">
+
+        <h2 class="text-center">Category</h2>
+        
+        <div class="row category-div ">
+            
+            <div class="col-md-4 my-3">
+                <div class="card card-body bg-warning text-center text-white">
+                    <h3>Web Development</h3>
+                </div>
+            </div>
+            <div class="col-md-4 my-3">
+                <div class="card card-body bg-success text-center text-white">
+                    <h3>App Development</h3>
+                </div>
+            </div>
+            <div class="col-md-4 my-3">
+                <div class="card card-body bg-info text-center text-white">
+                    <h3>Web Development</h3>
+                </div>
+            </div>
+            <div class="col-md-4 my-3">
+                <div class="card card-body bg-primary text-center text-white">
+                    <h3>Web Development</h3>
+                </div>
+            </div>
+            <div class="col-md-4 my-3">
+                <div class="card card-body bg-danger text-center text-white">
+                    <h3>Web Development</h3>
+                </div>
+            </div>
+            <div class="col-md-4 my-3">
+                <div class="card card-body bg-secondary text-center text-white">
+                    <h3>Web Development</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="counter">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-8 col-sm-12 mx-auto">
+                <div class="counter-div d-flex">
+                    <div>
+
+                        <i class="bi bi-people-fill h1"></i>
+                        <h3 class="counter fw-bold h1">1000+</h3>
+                        <p>Happy User</p>
+                    </div>
+                    <div>
+                        <i class="bi bi-stack h1"></i>
+
+                        <h3 class="counter h1 fw-bold">1000+</h3>
+                        <p>Tutorial</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<section id="contribute ">
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-md-6 d-flex flex-column justify-content-center align-items-center text-center">
+                <h2 class="text-center">Contribute to <br> Grow our Community</h2>
+                
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ipsam vero rerum iure ipsum quam natus eum ad quasi numquam.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/contribute.png' %}" class="img-fluid" alt="">
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
