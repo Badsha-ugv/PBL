@@ -7,6 +7,8 @@
 
 
 {% block body %}
+{% include 'include/navbar.html' %}
+
 <section id="hero" class="d-flex justify-content-center align-items-center">
     <div class="overlay"></div>
     <div class="hero-div w-25 mx-auto  text-center   ">
@@ -14,8 +16,8 @@
         <p>Dive Dive Into Code</p>
         <div class="d-flex gap-3">
 
-            <button class="btn btn-success w-50 mx-auto">Join Now</button>
-            <button class="btn btn-info text-white w-50 mx-auto">Contribute Now</button>
+            <a href="{% url 'login' %}" class="btn btn-success w-50 mx-auto">Join Now</a>
+            <a href="{% url 'admin:index' %}"  class="btn btn-info text-white w-50 mx-auto">Contribute Now</a>
         </div>
     </div>
 </section>
@@ -26,37 +28,13 @@
         <h2 class="text-center">Category</h2>
         
         <div class="row category-div ">
-            
+            {% for ctg in category %}
             <div class="col-md-4 my-3">
-                <div class="card card-body bg-warning text-center text-white">
-                    <h3>Web Development</h3>
+                <div class="card card-body bg-{{ctg.bg_color}} text-center text-white">
+                    <h3>{{ctg.name}}</h3>
                 </div>
             </div>
-            <div class="col-md-4 my-3">
-                <div class="card card-body bg-success text-center text-white">
-                    <h3>App Development</h3>
-                </div>
-            </div>
-            <div class="col-md-4 my-3">
-                <div class="card card-body bg-info text-center text-white">
-                    <h3>Web Development</h3>
-                </div>
-            </div>
-            <div class="col-md-4 my-3">
-                <div class="card card-body bg-primary text-center text-white">
-                    <h3>Web Development</h3>
-                </div>
-            </div>
-            <div class="col-md-4 my-3">
-                <div class="card card-body bg-danger text-center text-white">
-                    <h3>Web Development</h3>
-                </div>
-            </div>
-            <div class="col-md-4 my-3">
-                <div class="card card-body bg-secondary text-center text-white">
-                    <h3>Web Development</h3>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -70,13 +48,13 @@
                     <div>
 
                         <i class="bi bi-people-fill h1"></i>
-                        <h3 class="counter fw-bold h1">1000+</h3>
+                        <h3 class="counter fw-bold h1">{{user_count}}+</h3>
                         <p>Happy User</p>
                     </div>
                     <div>
                         <i class="bi bi-stack h1"></i>
 
-                        <h3 class="counter h1 fw-bold">1000+</h3>
+                        <h3 class="counter h1 fw-bold">{{topic_count}}+</h3>
                         <p>Tutorial</p>
                     </div>
                 </div>
@@ -101,4 +79,26 @@
 
     </div>
 </section>
+
+<section id="topic bg-white ">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+
+                <h3 class="text-center">What You Have to Learn!!</h3>
+                <hr>
+                
+                <div class="learn text-center border">
+                    {% for topic in topics %}
+                    <span class="border bg-secondary text-white " style="padding: 10px 15px;"><a href="{% url 'learn' topic.id %}" style="text-decoration: none; color: white;">{{topic.name}}</a></span>
+                    {% empty %}
+                    <span>No Topic Available :( </span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'include/footer.html' %}
 {% endblock %}
+

@@ -2,56 +2,76 @@
 {% block title %}Learn {{topic}} {% endblock %}
 {% block css %}
 <style>
+    body{
+        overflow-x: hidden;
+    }
     #content{
         display: none;
+    }
+    .left{
+        height: 100vh;
+        overflow-x: auto;
+        background-color: lightcyan;
+        padding: 0;
+        margin: 0;
+    }
+    .submodule:hover{
+        opacity: 0.5;
     }
 </style>
 {% endblock %}
 {% block body %}
+{% include 'include/navbar.html' %}
 
-{{ topic }}
+<section>
+
 
 <div class="row">
-    <div class="col-3">
-        {% for module in modules %}
-        <button id="toggleButton">Toggle Content</button>
-        <div id="content">
-            <p>This is some content that can be collapsed or expanded.</p>
+    <div class="col-3 left">
+        <div class="accordion" id="accordionExample">
+            {% for module in modules %}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo-{{forloop.counter}}"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                        {{module.name}}
+                    </button>
+                </h2>
+                <div id="collapseTwo-{{forloop.counter}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ul class="list-group">
+                            {% for sub in module.submodule_list %}
+
+                            <li class="list-group-item submodule" hx-get="{% url 'get_article' sub.id %}" hx-target="#article" style="cursor: pointer; " >{{sub.name}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
         
     </div>
     <div class="col-9">
 
         <div id="article">
-
+            <h1 class="text-center py-5">
+                Welcome to this Article Tutorial {{topic}}
+            </h1>
             {% include 'include/article.html' %}
 
         </div>
     </div>
 </div>
 
-
-
-<!-- <ul>
-    {% for mod in module %}
-    <li>
-        <a hx-get="{% url 'get_article' mod.id %}" hx-target="#article" hx-trigger="click" >{{mod.name}}</a>
-    </li>
-    {% endfor %}
-</ul> -->
+</section>
 
 
 
 
 {% endblock %}
 {% block js %}
-<script>
-    $(document).ready(function () {
-        $('#toggleButton').click(function () {
-            $('#content').slideToggle();
-        });
-    });
-</script>
+
 
 {% endblock %}
+{% include 'include/footer.html' %}

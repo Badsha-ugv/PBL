@@ -3,13 +3,13 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container py-5">
 
-    <h3>Login to your Account</h3>
+    <h3 class="text-center text-muted ">Login to your Account</h3>
 
     <div class="row">
         <div class="col-12 col-md-6 col-sm-12 mx-auto">
-            <div class="border border-3 p-3 shadow rounded-3">
+            <div class="border border-3 p-3 shadow-lg rounded-3">
                 <form action="" method="post">
                     {% csrf_token %}
                     <div class="form-group">
@@ -22,10 +22,12 @@
                         <input type="text" class="form-control" name="password" placeholder="Username">
                     </div>
                     <div class="submit-btn mt-3">
-                        <input type="submit" value="Registration" class="btn btn-info">
+                        <input type="submit" value="Login" class="btn btn-secondary w-25">
                     </div>
                 </form>
             </div>
+
+            <p class="mt-3">Done have an account? <a href="{% url 'create_user' %}">Register Now</a></p>
     
         </div>
     </div>
